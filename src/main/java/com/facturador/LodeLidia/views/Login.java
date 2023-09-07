@@ -6,6 +6,8 @@
 package com.facturador.LodeLidia.views;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -69,6 +71,9 @@ public class Login extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblSalirMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblSalirMouseExited(evt);
+            }
         });
         header.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, -1, -1));
 
@@ -82,6 +87,11 @@ public class Login extends javax.swing.JFrame {
         lblPass.setText("Contraseña");
 
         btnSesion.setText("Iniciar Sesión");
+        btnSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSesionMouseClicked(evt);
+            }
+        });
 
         txtPass.setText("jPasswordField1");
 
@@ -97,10 +107,9 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                        .addComponent(txtPass)
-                        .addComponent(txtUsuario)))
+                    .addComponent(btnSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(txtPass)
+                    .addComponent(txtUsuario))
                 .addGap(59, 59, 59))
         );
         jPanel6Layout.setVerticalGroup(
@@ -116,9 +125,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPass)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnSesion)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 290, 410));
@@ -150,12 +159,23 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_headerMouseDragged
 
     private void lblSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseEntered
-        
+        lblSalir.setForeground(Color.red);
     }//GEN-LAST:event_lblSalirMouseEntered
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
-        System.exit(0);
+        int mensaje = JOptionPane.showConfirmDialog(null, "¿Seguro que desea salir?", "Salir del sistema", JOptionPane.OK_CANCEL_OPTION);
+        if (mensaje == JOptionPane.OK_OPTION){
+            System.exit(1);
+        }
     }//GEN-LAST:event_lblSalirMouseClicked
+
+    private void btnSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSesionMouseClicked
+        String nombre = txtUsuario.getText();        
+    }//GEN-LAST:event_btnSesionMouseClicked
+
+    private void lblSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseExited
+        lblSalir.setForeground(new Color(187, 187, 187));
+    }//GEN-LAST:event_lblSalirMouseExited
 
     public static void main(String args[]) {
         FlatMacDarkLaf.setup();
