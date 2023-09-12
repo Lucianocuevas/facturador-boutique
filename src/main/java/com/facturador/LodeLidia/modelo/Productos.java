@@ -9,10 +9,10 @@ public class Productos {
     private float precio;
     private Categoria categoria;
 
-    public Productos(String nombre, float precio, Categoria categoria) {
+    public Productos(Long codigo, String nombre,float precio) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
-        this.categoria = new Categoria(categoria);
     }
 
     public Productos(Long codigo, String nombre, Categoria categoria, float precio) {
