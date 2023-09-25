@@ -20,4 +20,8 @@ public class ClienteController {
     public List<Cliente> listarPorNombre(String nombre){
         return clienteDao.listarNombre(nombre);
     }
+
+    public List<Cliente>listarCuentas(String nombre) {
+        return null;//clienteDao.listarCuentas(nombre);
+    }
 }
