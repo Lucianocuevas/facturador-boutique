@@ -65,4 +65,24 @@ public class CategoriaDao {
         }        
         return resultado;
     }
+
+    public Categoria buscar(String nombre) {
+        
+        final Connection con = new ConnectionFactory().recuperaConexion();
+            try(con){
+                PreparedStatement stm = con.prepareStatement("SELECT ID, CATEGORIA FROM CATEGORIAS WHERE CATEGORIA = ?");
+                try(stm){
+                    
+                    stm.setString(1, nombre);
+                    stm.execute();
+                    ResultSet rs = stm.executeQuery();
+                    rs.next();
+                    Categoria resultado = new Categoria(rs.getInt(1), nombre);
+                    return resultado;
+                }
+            }catch(SQLException e){
+                throw new RuntimeException(e);
+            }
+        
+    }
 }

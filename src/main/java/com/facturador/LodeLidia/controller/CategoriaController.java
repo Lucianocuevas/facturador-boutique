@@ -18,5 +18,9 @@ public class CategoriaController {
     public List<Categoria> listarCategoria(){       
         return categoriaDao.listarCategoria();
     }
+
+    public Categoria buscarCategoria(String nombre) {
+        return categoriaDao.buscar(nombre);
+    }
     
 }

@@ -19,4 +19,10 @@ public class ProductoController {
     public List<Productos> listarProductos(String buscar){
         return productoDao.listarProductos(buscar);
     }
+
+    public Long registrarProducto(Productos producto) {
+        return productoDao.registrar(producto);
+    }
+
+   
 }

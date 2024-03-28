@@ -14,6 +14,11 @@ public class Productos {
         this.nombre = nombre;
         this.precio = precio;
     }
+    public Productos(String nombre, float precio, Categoria categoria){
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoria = new Categoria(categoria);
+    }
 
     public Productos(Long codigo, String nombre, Categoria categoria, float precio) {
         this.codigo = codigo;
@@ -50,5 +55,8 @@ public class Productos {
         this.categoria = new Categoria(categoria);
     }
     
+    public void setCodigo(Long codigo){
+        this.codigo = codigo;
+    }
     
 }

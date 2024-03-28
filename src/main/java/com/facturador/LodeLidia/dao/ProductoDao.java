@@ -8,12 +8,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoDao {
     
     final private Connection con;    
+    
     
     public ProductoDao(Connection con){
         this.con = con;
@@ -54,4 +56,39 @@ public class ProductoDao {
         
         return resultado;
     }
+
+    public Long registrar(Productos producto) {
+  
+        Connection con = new ConnectionFactory().recuperaConexion();
+        
+        try (con){
+            PreparedStatement stm = con.prepareStatement("INSERT INTO PRODUCTOS "
+                    + "(nombre, categoria, precio)"
+                    + " VALUES (?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+            try(stm){
+                stm.setString(1, producto.getNombre());
+                stm.setInt(2, producto.getCategoria().getId());
+                stm.setFloat(3, producto.getPrecio());
+                
+                stm.execute();
+                
+                final ResultSet rs = stm.getGeneratedKeys();
+                
+                try(rs){
+                    while(rs.next()){
+                        producto.setCodigo(Long.valueOf(rs.getInt(1)));
+                        
+                    }
+                    return producto.getCodigo();
+                }
+            }
+            
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        
+        
+    }
+
+    
 }
