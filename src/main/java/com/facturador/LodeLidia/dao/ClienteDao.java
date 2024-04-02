@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class ClienteDao {
-    final private Connection con;
+    final private Connection con;    
+    private Cliente cliente;
     
     public ClienteDao(Connection con){
         this.con = con;
@@ -80,5 +82,32 @@ public class ClienteDao {
         throw new RuntimeException (e);
     }
         return resultado;
+    }
+    
+    public Cliente buscarCliente(String nombre) {
+        final Connection con = new ConnectionFactory().recuperaConexion();
+        
+        try (con){
+            
+            PreparedStatement stm = con.prepareStatement("SELECT ID, NOMBRE,"
+                    + " APELLIDO, TELEFONO, LOCALIDAD FROM CLIENTES"
+                    + " WHERE NOMBRE = ?");
+            
+            try(stm){
+                stm.setString(1, nombre);
+                stm.execute();
+                
+                ResultSet result = stm.executeQuery();
+                
+                while(result.next()){
+                    cliente = new Cliente(result.getLong("id"),
+                    result.getString("NOMBRE"), result.getString("APELLIDO"),
+                    result.getString("TELEFONO"), result.getString("LOCALIDAD"));
+                }
+            }
+        }catch (SQLException e){
+           throw new RuntimeException (e); 
+        }        
+        return cliente;
     }
 }

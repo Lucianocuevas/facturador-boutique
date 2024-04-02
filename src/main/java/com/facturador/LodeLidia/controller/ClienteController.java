@@ -24,4 +24,8 @@ public class ClienteController {
     public List<Cliente>listarCuentas(String nombre) {
         return null;//clienteDao.listarCuentas(nombre);
     }
+
+    public Cliente buscarCliente(String cliente) {
+        return clienteDao.buscarCliente(cliente);
+    }
 }

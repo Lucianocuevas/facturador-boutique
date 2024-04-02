@@ -13,5 +13,41 @@ public class Factura {
     private long idCliente;
     private String formaPago;
     private String medioPago;
+
+    public Factura(Date fechaCliente, long idCliente, String formaPago, String medioPago) {
+        this.fechaCliente = fechaCliente;
+        this.idCliente = idCliente;
+        this.formaPago = formaPago;
+        this.medioPago = medioPago;
+    }
+    
+    public Factura(long nFactura, Date fechaCliente, long idCliente, String formaPago, String medioPago) {
+        this.nFactura = nFactura;
+        this.fechaCliente = fechaCliente;
+        this.idCliente = idCliente;
+        this.formaPago = formaPago;
+        this.medioPago = medioPago;
+    }
+
+    public long getnFactura() {
+        return nFactura;
+    }
+
+    public Date getFechaCliente() {
+        return fechaCliente;
+    }
+
+    public long getIdCliente() {
+        return idCliente;
+    }
+
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public String getMedioPago() {
+        return medioPago;
+    }
+    
     
 }
