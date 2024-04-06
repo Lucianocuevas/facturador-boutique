@@ -28,4 +28,8 @@ public class ClienteController {
     public Cliente buscarCliente(String cliente) {
         return clienteDao.buscarCliente(cliente);
     }
+
+    public long crearNuevo(Cliente nuevoCliente) {
+        return clienteDao.crearCliente(nuevoCliente);
+    }
 }

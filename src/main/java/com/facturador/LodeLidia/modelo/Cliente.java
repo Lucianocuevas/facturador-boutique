@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.facturador.LodeLidia.modelo;
+
+import java.sql.Date;
 
 
 public class Cliente {
@@ -13,6 +12,8 @@ public class Cliente {
     private String apellido;
     private String telefono;
     private String localidad;
+    private float limite;
+    private Date FechaCreacion;
     
     public Cliente(){ }
 
@@ -22,8 +23,26 @@ public class Cliente {
         this.apellido = apellido;
         this.telefono = telefono;
         this.localidad = localidad;
+        
     }
 
+    public Cliente(String nombre, String apellido, String telefono, String localidad, float limite, Date fecha) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.localidad = localidad;
+        this.limite = limite;
+        this.FechaCreacion = fecha;
+    }
+
+    public void setLimite(float limite) {
+        this.limite = limite;
+    }
+
+    public void setFechaCreacion(Date FechaCreacion) {
+        this.FechaCreacion = FechaCreacion;
+    }
+    
     public Cliente(Cliente clienteElegido) {
         this.id = clienteElegido.getId();
         this.nombre = clienteElegido.getNombre();
@@ -31,7 +50,18 @@ public class Cliente {
         this.telefono = clienteElegido.getTelefono();
         this.localidad = clienteElegido.getLocalidad();
     }
+    
+    public float getLimite(){
+        return limite;
+    }
+    
+    public Date getFechaCreacion(){
+        return FechaCreacion;
+    }
 
+    public void setId(long id){
+        this.id = id;
+    }
     public long getId() {
         return id;
     }
@@ -51,6 +81,7 @@ public class Cliente {
     public String getLocalidad() {
         return localidad;
     }
+    
 
     public void setNombre(String nombre) {
         this.nombre = nombre;

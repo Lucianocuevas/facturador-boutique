@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,5 +110,37 @@ public class ClienteDao {
            throw new RuntimeException (e); 
         }        
         return cliente;
+    }
+    
+    public long crearCliente(Cliente cliente){
+        final Connection con = new ConnectionFactory().recuperaConexion();
+        long respuesta = 0;
+        try(con){
+            PreparedStatement stm = con.prepareStatement("INSERT INTO CLIENTES"
+                    + "(nombre, apellido, telefono, localidad, limite, fechaCreacion) "
+                    + "VALUES(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            try(stm){
+                stm.setString(1,cliente.getNombre());
+                stm.setString(2, cliente.getApellido());
+                stm.setString(3, cliente.getTelefono());
+                stm.setString(4, cliente.getLocalidad());
+                stm.setFloat(5, cliente.getLimite());
+                stm.setDate(6, cliente.getFechaCreacion());
+                stm.execute();
+                
+                ResultSet result = stm.getGeneratedKeys();
+                try(result){
+                    while(result.next()){
+                        cliente.setId(result.getInt(1));
+                        respuesta = result.getInt(1);
+                        
+                    }
+                }
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return cliente.getId();
+        
     }
 }
