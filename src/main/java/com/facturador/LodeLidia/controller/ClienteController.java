@@ -29,7 +29,11 @@ public class ClienteController {
         return clienteDao.buscarCliente(cliente);
     }
 
-    public long crearNuevo(Cliente nuevoCliente) {
-        return clienteDao.crearCliente(nuevoCliente);
+    public Long crearNuevo(Cliente nuevoCliente) {
+       return clienteDao.crearCliente(nuevoCliente);
+    }
+
+    public List<Cliente> listarPorTelefono(String entrada) {
+        return clienteDao.listarTelefonos(entrada);
     }
 }

@@ -112,9 +112,8 @@ public class ClienteDao {
         return cliente;
     }
     
-    public long crearCliente(Cliente cliente){
+    public Long crearCliente(Cliente cliente){
         final Connection con = new ConnectionFactory().recuperaConexion();
-        long respuesta = 0;
         try(con){
             PreparedStatement stm = con.prepareStatement("INSERT INTO CLIENTES"
                     + "(nombre, apellido, telefono, localidad, limite, fechaCreacion) "
@@ -131,16 +130,46 @@ public class ClienteDao {
                 ResultSet result = stm.getGeneratedKeys();
                 try(result){
                     while(result.next()){
-                        cliente.setId(result.getInt(1));
-                        respuesta = result.getInt(1);
-                        
+                        cliente.setId(Long.valueOf(result.getInt(1)));                        
                     }
+                    return cliente.getId();
                 }
             }
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
-        return cliente.getId();
         
+        
+    }
+
+    public List<Cliente> listarTelefonos(String entrada) {
+        List<Cliente> resultado = new ArrayList<>();
+        final Connection con = new ConnectionFactory().recuperaConexion();
+        
+        try (con){
+            PreparedStatement stm = con.prepareStatement("SELECT ID, NOMBRE,"
+                    + " APELLIDO, TELEFONO, LOCALIDAD FROM CLIENTES"
+                    + " WHERE TELEFONO = ? ");
+            try(stm){
+                
+                stm.setString(1, "%" + entrada + "%");
+                stm.execute();
+                
+                ResultSet result  = stm.executeQuery();
+                
+                while(result.next()){
+                    Cliente fila = new Cliente(result.getLong("id"),
+                    result.getString("NOMBRE"), result.getString("APELLIDO"),
+                    result.getString("TELEFONO"), result.getString("LOCALIDAD"));
+                    
+                    resultado.add(fila);
+                }
+            }
+            
+        }catch (SQLException e){
+        
+        throw new RuntimeException (e);
+    }
+        return resultado;
     }
 }

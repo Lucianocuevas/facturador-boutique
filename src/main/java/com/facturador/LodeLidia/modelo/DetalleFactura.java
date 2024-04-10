@@ -1,19 +1,27 @@
 
 package com.facturador.LodeLidia.modelo;
 
+import java.util.List;
 
-public class ItemsFactura {
+
+public class DetalleFactura {
     
     private long nfactura;
     private long codigoProducto;
     private int cantidad;
     private float precio;
 
-    public ItemsFactura(long nfactura, long codigoProducto, int cantidad, float precio) {
+    public DetalleFactura(long nfactura, long codigoProducto, int cantidad, float precio) {
         this.nfactura = nfactura;
         this.codigoProducto = codigoProducto;
         this.cantidad = cantidad;
         this.precio = precio;
+    }
+    
+    public DetalleFactura(long nfactura, long codigoProducto, int cantidad) {
+        this.nfactura = nfactura;
+        this.codigoProducto = codigoProducto;
+        this.cantidad = cantidad;
     }
     
     public long getCodigoProducto() {

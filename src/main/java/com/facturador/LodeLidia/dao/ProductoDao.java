@@ -57,7 +57,7 @@ public class ProductoDao {
         return resultado;
     }
 
-    public Long registrar(Productos producto) {
+     public Long registrar(Productos producto) {
   
         Connection con = new ConnectionFactory().recuperaConexion();
         
@@ -68,25 +68,21 @@ public class ProductoDao {
             try(stm){
                 stm.setString(1, producto.getNombre());
                 stm.setInt(2, producto.getCategoria().getId());
-                stm.setFloat(3, producto.getPrecio());
-                
+                stm.setFloat(3, producto.getPrecio());                
                 stm.execute();
                 
                 final ResultSet rs = stm.getGeneratedKeys();
                 
                 try(rs){
                     while(rs.next()){
-                        producto.setCodigo(Long.valueOf(rs.getInt(1)));
-                        
+                        producto.setCodigo(Long.valueOf(rs.getInt(1)));                        
                     }
                     return producto.getCodigo();
                 }
-            }
-            
+            }            
         }catch(SQLException e){
             throw new RuntimeException(e);
-        }
-        
+        }      
         
     }
 

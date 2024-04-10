@@ -21,7 +21,7 @@ public class MenuClientes extends javax.swing.JFrame {
     int xMouse, yMouse;
     private ClienteController clienteController;
     private ProductoController productoController;
-    private String[] cargaTablaClientes;
+    private String[] cargaTablaClientes, cargaTablaCuenta;
     private DefaultTableModel modeloCliente;
     private Cliente nuevoCliente;
     private Calendar fechaActual = new GregorianCalendar();
@@ -35,6 +35,14 @@ public class MenuClientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dlgEstadoCuenta = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        lblDlgEstadoCuentaCliente = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        btnDlgEstadoCuentaCambiarCliente = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbDlogEstadoCuentaCuenta = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
         Contenedor = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
         lblClientes = new javax.swing.JLabel();
@@ -46,15 +54,15 @@ public class MenuClientes extends javax.swing.JFrame {
         pnListadoClientes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbClientes = new javax.swing.JTable();
-        tfNombre = new javax.swing.JTextField();
+        tfTelefono = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         lblCliente = new javax.swing.JLabel();
         btnEliminarCliente = new javax.swing.JButton();
         btnEditarCliente = new javax.swing.JButton();
         btnVerEstado = new javax.swing.JButton();
-        tfNombre1 = new javax.swing.JTextField();
+        tfNombre = new javax.swing.JTextField();
         lblCliente1 = new javax.swing.JLabel();
-        btnBuscar1 = new javax.swing.JButton();
+        btnBuscarTelefono = new javax.swing.JButton();
         btnCrearFactura = new javax.swing.JButton();
         btnCrearNotaCredito = new javax.swing.JButton();
         pnCargaCliente = new javax.swing.JPanel();
@@ -71,6 +79,51 @@ public class MenuClientes extends javax.swing.JFrame {
         btnAceptarCrear = new javax.swing.JButton();
         btnCancelarCrear = new javax.swing.JButton();
         dcFechaCreacion = new com.toedter.calendar.JDateChooser();
+
+        dlgEstadoCuenta.setModal(true);
+        dlgEstadoCuenta.setUndecorated(true);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblDlgEstadoCuentaCliente.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblDlgEstadoCuentaCliente.setText("Cliente");
+        jPanel1.add(lblDlgEstadoCuentaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+
+        jButton1.setText("jButton1");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 120, -1, -1));
+
+        btnDlgEstadoCuentaCambiarCliente.setIcon(new javax.swing.ImageIcon("C:\\git\\LodeLidia\\src\\main\\java\\com\\facturador\\LodeLidia\\images\\buscar_cliente.png")); // NOI18N
+        btnDlgEstadoCuentaCambiarCliente.setText("Cambiar Cliente");
+        jPanel1.add(btnDlgEstadoCuentaCambiarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, -1, -1));
+
+        tbDlogEstadoCuentaCuenta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tbDlogEstadoCuentaCuenta);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 207, 760, 300));
+
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(51, 204, 0));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 330, -1));
+
+        javax.swing.GroupLayout dlgEstadoCuentaLayout = new javax.swing.GroupLayout(dlgEstadoCuenta.getContentPane());
+        dlgEstadoCuenta.getContentPane().setLayout(dlgEstadoCuentaLayout);
+        dlgEstadoCuentaLayout.setHorizontalGroup(
+            dlgEstadoCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        dlgEstadoCuentaLayout.setVerticalGroup(
+            dlgEstadoCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -149,11 +202,11 @@ public class MenuClientes extends javax.swing.JFrame {
                 .addComponent(lblAtras)
                 .addGap(487, 487, 487)
                 .addComponent(lblClientes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
                 .addComponent(lblMinimizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblSalir)
-                .addContainerGap())
+                .addGap(86, 86, 86))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,13 +248,18 @@ public class MenuClientes extends javax.swing.JFrame {
         btnEditarCliente.setText("Editar Cliente");
 
         btnVerEstado.setText("Estado de cuenta");
+        btnVerEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerEstadoActionPerformed(evt);
+            }
+        });
 
         lblCliente1.setText("Buscar por celular");
 
-        btnBuscar1.setIcon(new javax.swing.ImageIcon("C:\\git\\LodeLidia\\src\\main\\java\\com\\facturador\\LodeLidia\\images\\search.png")); // NOI18N
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarTelefono.setIcon(new javax.swing.ImageIcon("C:\\git\\LodeLidia\\src\\main\\java\\com\\facturador\\LodeLidia\\images\\search.png")); // NOI18N
+        btnBuscarTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
+                btnBuscarTelefonoActionPerformed(evt);
             }
         });
 
@@ -224,11 +282,11 @@ public class MenuClientes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnListadoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnListadoClientesLayout.createSequentialGroup()
-                                .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnBuscar1))
+                                .addComponent(btnBuscarTelefono))
                             .addGroup(pnListadoClientesLayout.createSequentialGroup()
-                                .addComponent(tfNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnBuscar)))))
                 .addGap(35, 35, 35)
@@ -238,23 +296,23 @@ public class MenuClientes extends javax.swing.JFrame {
                     .addComponent(btnVerEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrearFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrearNotaCredito, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         pnListadoClientesLayout.setVerticalGroup(
             pnListadoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListadoClientesLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addGroup(pnListadoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListadoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblCliente)
-                        .addComponent(tfNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
                 .addGroup(pnListadoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnListadoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblCliente1))
-                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnListadoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,10 +431,9 @@ public class MenuClientes extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addGroup(pnCargaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnCancelarCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(txtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnCancelarCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Cliente Nuevo", pnCargaCliente);
@@ -385,26 +442,26 @@ public class MenuClientes extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1051, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 958, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane2)
-                .addGap(328, 328, 328))
+                .addContainerGap())
         );
 
-        Contenedor.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 1090, 520));
+        Contenedor.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 990, 520));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 1009, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,7 +497,7 @@ public class MenuClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_lblSalirMouseExited
 
     private void lblMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseEntered
-        // TODO add your handling code here:
+        this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_lblMinimizarMouseEntered
 
     private void lblMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseExited
@@ -463,10 +520,10 @@ public class MenuClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblAtrasMouseClicked
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
+    private void btnBuscarTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTelefonoActionPerformed
+        BuscarTelefono();
+    }//GEN-LAST:event_btnBuscarTelefonoActionPerformed
+   
     private void btnAceptarCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarCrearActionPerformed
         CrearCliente();
     }//GEN-LAST:event_btnAceptarCrearActionPerformed
@@ -474,6 +531,10 @@ public class MenuClientes extends javax.swing.JFrame {
     private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
         mover(evt);
     }//GEN-LAST:event_headerMouseDragged
+
+    private void btnVerEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEstadoActionPerformed
+        EstadoCuenta();
+    }//GEN-LAST:event_btnVerEstadoActionPerformed
     //</editor-fold>
 
     public static void main(String args[]) {
@@ -506,34 +567,42 @@ public class MenuClientes extends javax.swing.JFrame {
     private javax.swing.JPanel Contenedor;
     private javax.swing.JButton btnAceptarCrear;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscarTelefono;
     private javax.swing.JButton btnCancelarCrear;
     private javax.swing.JButton btnCrearFactura;
     private javax.swing.JButton btnCrearNotaCredito;
+    private javax.swing.JButton btnDlgEstadoCuentaCambiarCliente;
     private javax.swing.JButton btnEditarCliente;
     private javax.swing.JButton btnEliminarCliente;
     private javax.swing.JButton btnVerEstado;
     private com.toedter.calendar.JDateChooser dcFechaCreacion;
+    private javax.swing.JDialog dlgEstadoCuenta;
     private javax.swing.JPanel header;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblCliente1;
     private javax.swing.JLabel lblClientes;
+    private javax.swing.JLabel lblDlgEstadoCuentaCliente;
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JPanel pnCargaCliente;
     private javax.swing.JPanel pnListadoClientes;
     private javax.swing.JTable tbClientes;
+    private javax.swing.JTable tbDlogEstadoCuentaCuenta;
     private javax.swing.JTextField tfNombre;
-    private javax.swing.JTextField tfNombre1;
+    private javax.swing.JTextField tfTelefono;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtLimite;
     private javax.swing.JTextField txtLocalidad;
@@ -542,27 +611,7 @@ public class MenuClientes extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
 
-    private void buscarCliente() {
-        String entrada = tfNombre.getText();
-
-        if (modeloCliente != null) {
-            limpiarTabla(modeloCliente);
-        }
-
-        var clientes = clienteController.listarPorNombre(entrada);
-
-        clientes.forEach(cliente -> modeloCliente.addRow(new Object[]{
-            cliente.getId(), cliente.getNombre(), cliente.getApellido(),
-            cliente.getTelefono(), cliente.getLocalidad()}));
-    }
-
-    private void cargarTablas() {
-        this.clienteController = new ClienteController();
-        cargaTablaClientes = new String[]{"ID", "Nombre", "Apellido", "Telefono", "Localidad"};
-        cargarTablaCliente(cargaTablaClientes);
-        dcFechaCreacion.setCalendar(fechaActual);
-    }
-
+    //<editor-fold defaultstate="collapsed" desc="  Carga y creacion de Tablas  ">
     private void cargarTablaCliente(String[] carga) {
         modeloCliente = (DefaultTableModel) tbClientes.getModel();
         for (int i = 0; i < carga.length; ++i) {
@@ -570,6 +619,14 @@ public class MenuClientes extends javax.swing.JFrame {
         }
     }
 
+    private void cargarTablas() {
+        this.clienteController = new ClienteController();
+        cargaTablaClientes = new String[]{"ID", "Nombre", "Apellido", "Telefono", "Localidad", "Fecha Creación"};
+        cargaTablaCuenta = new String[]{"ID", "Nombre", "Apellido", "Telefono", "Localidad", "Fecha Creación"};
+        cargarTablaCliente(cargaTablaClientes);
+        dcFechaCreacion.setCalendar(fechaActual);
+    }
+    
     private void limpiarTabla(DefaultTableModel modelo) {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
@@ -586,23 +643,7 @@ public class MenuClientes extends javax.swing.JFrame {
     private void Mensaje(String msg, String titulo, int msgType) {
         JOptionPane.showMessageDialog(null, msg, titulo, msgType);
     }
-
-    private void CrearCliente() {
-        long respuesta = 0;
-        java.sql.Date fecha = new java.sql.Date(dcFechaCreacion.getDate().getTime());
-        if (campovacio()) {
-            Mensaje("Por favor, ingrese datos validos", "¡ERROR EN CARGA DE DATOS!", WIDTH);
-        } else {
-            
-            nuevoCliente = new Cliente(txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(),
-                    txtLocalidad.getText(), Float.valueOf(txtLimite.getText()), fecha);
-            clienteController.crearNuevo(nuevoCliente);
-            Mensaje("Se creo el cliente N° "+respuesta+" "+nuevoCliente.getApellido()+", "
-                    +nuevoCliente.getNombre(), "¡Nuevo Cliente Creado!", JOptionPane.INFORMATION_MESSAGE);
-            Limpiar("");
-        }
-    }
-
+    
     private boolean campovacio(){
         return txtNombre.getText().isBlank() || txtApellido.getText().isBlank();
     }
@@ -613,4 +654,58 @@ public class MenuClientes extends javax.swing.JFrame {
         txtLocalidad.setText(s);
         txtTelefono.setText(s);
     }
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="  ABM clientes    ">
+    private void BuscarTelefono() {
+        String entrada = tfTelefono.getText();
+        
+        if (modeloCliente != null) {
+            limpiarTabla(modeloCliente);
+        }
+        
+        var clientes = clienteController.listarPorTelefono(entrada);
+        
+        clientes.forEach(cliente -> modeloCliente.addRow(new Object[]{
+            cliente.getId(), cliente.getNombre(), cliente.getApellido(),
+            cliente.getTelefono(), cliente.getLocalidad(), cliente.getFechaCreacion().toString()}));
+    }
+    
+    private void buscarCliente() {
+        String entrada = tfNombre.getText();
+
+        if (modeloCliente != null) {
+            limpiarTabla(modeloCliente);
+        }
+
+        var clientes = clienteController.listarPorNombre(entrada);
+
+        clientes.forEach(cliente -> modeloCliente.addRow(new Object[]{
+            cliente.getId(), cliente.getNombre(), cliente.getApellido(),
+            cliente.getTelefono(), cliente.getLocalidad(), cliente.getFechaCreacion().toString()}));
+    }
+
+    private void CrearCliente() {
+        long respuesta = 0;
+        java.sql.Date fecha = new java.sql.Date(dcFechaCreacion.getDate().getTime());
+        if (campovacio()) {
+            Mensaje("Por favor, ingrese datos validos", "¡ERROR EN CARGA DE DATOS!", WIDTH);
+        } else {
+            
+            nuevoCliente = new Cliente(txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(),
+                    txtLocalidad.getText(), Float.valueOf(txtLimite.getText()), fecha);
+            respuesta = clienteController.crearNuevo(nuevoCliente);
+            Mensaje("Se creo el cliente N° "+respuesta+" ¡"+nuevoCliente.getApellido()+", "
+                    +nuevoCliente.getNombre()+"!", "¡Nuevo Cliente Creado!", JOptionPane.INFORMATION_MESSAGE);
+            Limpiar("");
+        }
+    }
+//  </editor-fold>
+
+    private void EstadoCuenta() {
+        
+    }
+    
+    
 }
