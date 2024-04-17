@@ -50,6 +50,7 @@ public class ProductoDao {
                 resultado.add(fila);
                 }
             }
+            con.close();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -77,12 +78,39 @@ public class ProductoDao {
                     while(rs.next()){
                         producto.setCodigo(Long.valueOf(rs.getInt(1)));                        
                     }
+                    con.close();
                     return producto.getCodigo();
                 }
             }            
         }catch(SQLException e){
             throw new RuntimeException(e);
         }      
+        
+    }
+
+    public int comprobarProducto(String nombre) {
+        final Connection con = new ConnectionFactory().recuperaConexion();
+        int respuesta = 0;
+        try(con){
+            PreparedStatement stm = con.prepareStatement("SELECT CODIGO, NOMBRE FROM PRODUCTOS WHERE NOMBRE = ?");
+            try(stm){
+                stm.setString(1, nombre);
+                stm.execute();
+                
+                final ResultSet rs = stm.executeQuery();
+                try(rs){
+                    while(rs.next()){
+                        respuesta = rs.getInt(1);
+                    }
+                }
+                return respuesta;
+                
+            }
+            
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+                
         
     }
 

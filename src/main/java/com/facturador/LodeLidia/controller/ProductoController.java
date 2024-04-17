@@ -24,5 +24,9 @@ public class ProductoController {
         return productoDao.registrar(producto);
     }
 
+    public int ComprobarProducto(String nombre) {
+        return productoDao.comprobarProducto(nombre);
+    }
+
    
 }

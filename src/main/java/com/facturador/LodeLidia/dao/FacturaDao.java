@@ -23,12 +23,13 @@ public class FacturaDao {
         try (con) {
             PreparedStatement stm = con.prepareStatement("INSERT INTO"
                     + " factura(FECHA_VENTA, ID_CLIENTE,FORMA_DE_PAGO,"
-                    + " MEDIO_DE_PAGO) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                    + " MEDIO_DE_PAGO, TOTAL) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             stm.setDate(1, factura.getFechaCliente());
             stm.setLong(2, factura.getIdCliente());
             stm.setString(3, factura.getFormaPago());
             stm.setString(4, factura.getMedioPago());
+            stm.setFloat(5, factura.getTotal());
             stm.execute();
 
             ResultSet result = stm.getGeneratedKeys();
@@ -36,8 +37,10 @@ public class FacturaDao {
                 while(result.next()){
                     resultado = result.getLong(1);
                 }
+                con.close();
                 return resultado;                
             }
+           
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

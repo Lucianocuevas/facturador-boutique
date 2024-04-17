@@ -23,7 +23,7 @@ public class MenuClientes extends javax.swing.JFrame {
     private ProductoController productoController;
     private String[] cargaTablaClientes, cargaTablaCuenta;
     private DefaultTableModel modeloCliente;
-    private Cliente nuevoCliente;
+    private Cliente nuevoCliente,cliente;
     private Calendar fechaActual = new GregorianCalendar();
 
     public MenuClientes() {
@@ -264,6 +264,11 @@ public class MenuClientes extends javax.swing.JFrame {
         });
 
         btnCrearFactura.setText("Crear Factura");
+        btnCrearFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearFacturaActionPerformed(evt);
+            }
+        });
 
         btnCrearNotaCredito.setText("Crear Nota De Credito");
 
@@ -535,12 +540,14 @@ public class MenuClientes extends javax.swing.JFrame {
     private void btnVerEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEstadoActionPerformed
         EstadoCuenta();
     }//GEN-LAST:event_btnVerEstadoActionPerformed
+
+    private void btnCrearFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFacturaActionPerformed
+        HacerFactura();
+    }//GEN-LAST:event_btnCrearFacturaActionPerformed
     //</editor-fold>
 
     public static void main(String args[]) {
 
-
-        /* Create and display the form */
         FlatMacDarkLaf.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -705,6 +712,20 @@ public class MenuClientes extends javax.swing.JFrame {
 
     private void EstadoCuenta() {
         
+    }
+
+    private void HacerFactura() {
+        MenuVenta venta = new MenuVenta();
+        venta.setLocationRelativeTo(null);
+        venta.setVisible(true);
+        
+        if(tbClientes.getSelectedRowCount() == 0 || tbClientes.getSelectedColumnCount() == 0){
+            Mensaje("Seleccione un cliente para realizar una factura", "¡No hay datos!", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            
+            //cliente = new Cliente(Long.MIN_VALUE, nombre, apellido, telefono, localidad);
+        }
+        //venta.setearCliente(nuevoCliente);
     }
     
     

@@ -35,7 +35,8 @@ public class CategoriaDao {
                     result.getString("CATEGORIA"));                    
                     resultado.add(fila);
                 }
-            }            
+            }   
+            con.close();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }        
@@ -49,8 +50,7 @@ public class CategoriaDao {
         try(con){            
             PreparedStatement stm = con.prepareStatement("SELECT ID, CATEGORIA"
                     + " FROM CATEGORIAS WHERE ID = ?");
-            try(stm){
-                
+            try(stm){                
                 stm.setInt(1, id);
                 stm.execute();                
                 ResultSet result = stm.executeQuery();                
@@ -59,7 +59,8 @@ public class CategoriaDao {
                     result.getString("CATEGORIA"));                    
                     resultado.add(fila);
                 }
-            }            
+            }   
+            con.close();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }        
@@ -78,8 +79,10 @@ public class CategoriaDao {
                     ResultSet rs = stm.executeQuery();
                     rs.next();
                     Categoria resultado = new Categoria(rs.getInt(1), nombre);
+                    con.close();
                     return resultado;
                 }
+                
             }catch(SQLException e){
                 throw new RuntimeException(e);
             }

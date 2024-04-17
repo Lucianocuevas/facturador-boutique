@@ -38,6 +38,7 @@ public class DetalleFacturaDao {
                 }
                 stm.executeBatch();
                 con.commit();
+                con.close();
                 
             }catch(SQLException e){
                 con.rollback();
