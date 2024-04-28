@@ -18,7 +18,15 @@ public class Comprobantes {
         this.descripcion = descripcion;
         this.medioPago = medioPago;
         this.importe = importe;
-    }   
+    } 
+    
+    public Comprobantes(long nComprobante, Date Fecha, String descripcion, String medioPago, float importe) {
+        this.nComprobante = nComprobante;
+        this.Fecha = Fecha;        
+        this.descripcion = descripcion;
+        this.medioPago = medioPago;
+        this.importe = importe;
+    }  
     
     
     //<editor-fold defaultstate="collpased" desc="  Getter & Setters    ">

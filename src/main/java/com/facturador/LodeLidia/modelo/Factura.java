@@ -7,7 +7,7 @@ public class Factura {
     
     //<editor-fold defaultstate="collapsed" desc="  Variables   ">
     private long nFactura;
-    private Date fechaCliente;
+    private Date fecha;
     private long cliente;
     private String formaPago;
     private String medioPago;
@@ -15,7 +15,7 @@ public class Factura {
     //</editor-fold>
 
     public Factura(Date fechaCliente, Cliente cliente, String formaPago, String medioPago, float total) {
-        this.fechaCliente = fechaCliente;
+        this.fecha = fechaCliente;
         this.cliente = cliente.getId();
         this.formaPago = formaPago;
         this.medioPago = medioPago;
@@ -24,8 +24,16 @@ public class Factura {
         
     public Factura(long nFactura, Date fechaCliente, Cliente cliente, String formaPago, String medioPago, float total) {
         this.nFactura = nFactura;
-        this.fechaCliente = fechaCliente;
+        this.fecha = fechaCliente;
         this.cliente = cliente.getId();
+        this.formaPago = formaPago;
+        this.medioPago = medioPago;
+        this.total = total;
+    }
+    
+    public Factura(long nFactura, Date fechaCliente, String formaPago, String medioPago, float total) {
+        this.nFactura = nFactura;
+        this.fecha = fechaCliente;        
         this.formaPago = formaPago;
         this.medioPago = medioPago;
         this.total = total;
@@ -45,7 +53,7 @@ public class Factura {
     }
 
     public Date getFechaCliente() {
-        return fechaCliente;
+        return fecha;
     }
 
     public long getIdCliente() {
@@ -57,7 +65,7 @@ public class Factura {
     }
 
     public void setFechaCliente(Date fechaCliente) {
-        this.fechaCliente = fechaCliente;
+        this.fecha = fechaCliente;
     }
 
     public void setCliente(long cliente) {

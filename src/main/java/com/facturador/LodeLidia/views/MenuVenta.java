@@ -24,6 +24,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 //</editor-fold>
 
@@ -161,6 +162,12 @@ public class MenuVenta extends javax.swing.JFrame {
         dlgClientes.setResizable(false);
         dlgClientes.setSize(new java.awt.Dimension(855, 565));
 
+        txtBuscarNombreDialog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarNombreDialogKeyTyped(evt);
+            }
+        });
+
         txtBuscarCodigoDialog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBuscarCodigoDialogKeyTyped(evt);
@@ -204,6 +211,11 @@ public class MenuVenta extends javax.swing.JFrame {
 
         btnBuscarTelefonoDialog.setIcon(new javax.swing.ImageIcon("C:\\git\\LodeLidia\\src\\main\\java\\com\\facturador\\LodeLidia\\images\\buscar_cliente.png")); // NOI18N
         btnBuscarTelefonoDialog.setText("Buscar Por Telefono");
+        btnBuscarTelefonoDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarTelefonoDialogActionPerformed(evt);
+            }
+        });
 
         btnAgregarClienteDialog.setIcon(new javax.swing.ImageIcon("C:\\git\\LodeLidia\\src\\main\\java\\com\\facturador\\LodeLidia\\images\\adherir_cliente.png")); // NOI18N
         btnAgregarClienteDialog.setText("Agregar Cliente a factura");
@@ -231,29 +243,26 @@ public class MenuVenta extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(81, 81, 81)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(btnAgregarClienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAgregarClienteCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(lblNombreDialog)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtBuscarCodigoDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtBuscarNombreDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtBuscarTelefonoDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(lblCodigoDialog))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(lblTelefonoDialog)
-                                .addGap(361, 361, 361)))
+                                    .addComponent(lblNombreDialog)
+                                    .addComponent(lblTelefonoDialog))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtBuscarCodigoDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBuscarNombreDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBuscarTelefonoDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblCodigoDialog))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnBuscarTelefonoDialog, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                             .addComponent(btnBuscarCodigoDialog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -314,6 +323,7 @@ public class MenuVenta extends javax.swing.JFrame {
         dlgNuevoProductoRapido.setTitle("Nuevo Producto Rapido");
         dlgNuevoProductoRapido.setLocation(getLocation());
         dlgNuevoProductoRapido.setModal(true);
+        dlgNuevoProductoRapido.setUndecorated(true);
         dlgNuevoProductoRapido.setPreferredSize(new java.awt.Dimension(423, 295));
         dlgNuevoProductoRapido.setSize(new java.awt.Dimension(423, 295));
 
@@ -1193,11 +1203,11 @@ public class MenuVenta extends javax.swing.JFrame {
 
     private void btnAgregarClienteDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteDialogActionPerformed
         agregarCliente();
-        CerrarDialogo(dlgClientes);
+
     }//GEN-LAST:event_btnAgregarClienteDialogActionPerformed
 
     private void btnBuscarNombreDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNombreDialogActionPerformed
-
+        BuscarClienteNombre();
     }//GEN-LAST:event_btnBuscarNombreDialogActionPerformed
 
     private void btndlgListaProductosBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndlgListaProductosBuscarPActionPerformed
@@ -1258,7 +1268,7 @@ public class MenuVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarCantidadActionPerformed
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
-        emitirComprobante(total, cliente);
+       emitirComprobante(total, cliente);
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -1275,6 +1285,8 @@ public class MenuVenta extends javax.swing.JFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         dlgNuevoProductoRapido.setLocationRelativeTo(null);
         dlgNuevoProductoRapido.setVisible(true);
+        var cat = categoriaController.listarCategoria();
+        cat.forEach(categoria -> cbCategoriaNuevoProducto.addItem(categoria.getNombre()));
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMouseClicked
@@ -1369,11 +1381,21 @@ public class MenuVenta extends javax.swing.JFrame {
 
     private void txtBuscarCodigoDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCodigoDialogKeyTyped
         Solonumeros(evt);
+        TeclaEnter(evt);
     }//GEN-LAST:event_txtBuscarCodigoDialogKeyTyped
 
     private void txtBuscarTelefonoDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarTelefonoDialogKeyTyped
         Solonumeros(evt);
+        TeclaEnter(evt);
     }//GEN-LAST:event_txtBuscarTelefonoDialogKeyTyped
+
+    private void txtBuscarNombreDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarNombreDialogKeyTyped
+        TeclaEnter(evt);
+    }//GEN-LAST:event_txtBuscarNombreDialogKeyTyped
+
+    private void btnBuscarTelefonoDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTelefonoDialogActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarTelefonoDialogActionPerformed
     //</editor-fold>
 
     public static void main(String args[]) {
@@ -1535,11 +1557,8 @@ public class MenuVenta extends javax.swing.JFrame {
         cargaFormaPago = new String[]{"EFECTIVO", "TRANSFERENCIA", "DEBITO", "CREDITO", "BILLETERA SANTA FE", "QR MERCADOPAGO", "QR MODO"};
         cargarTablaFactura(cargaTablaFactura);
         cargarTablaCliente(cargaTablaCliente);
-        cargarTablaProductos(cargaTablaProductos);
-        var cat = categoriaController.listarCategoria();
-        cat.forEach(categoria -> cbCategoriaNuevoProducto.addItem(categoria.getNombre()));
         clienteDefault();
-        setearCliente(clienteController.buscarCliente("Consumidor"));
+        cargarTablaProductos(cargaTablaProductos);
         dcHora.setFont(new Font("Roboto", Font.BOLD, 22));
         dcHora.setBackground(new Color(0, 153, 0));
         dcHora.setCalendar(fechaActual);
@@ -1580,25 +1599,25 @@ public class MenuVenta extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, msg, "<html><b>" + titulo + "</b></html>", msgType);
     }
 
-    private boolean filaSeleccionada() {
-        return tbFactura.getSelectedRowCount() == 0 || tbFactura.getSelectedColumnCount() == 0;
+    private boolean filaSeleccionada(JTable tabla) {
+        return tabla.getSelectedRowCount() == 0 || tabla.getSelectedColumnCount() == 0;
     }
 
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapse" desc="  ABM Clientes  ">
-    public Cliente agregarCliente() {
-        Cliente clienteElegido = new Cliente(Long.valueOf(modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 0).toString()),
-                modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 1).toString(),
-                modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 2).toString(),
-                modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 3).toString(),
-                modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 4).toString());
+    protected void agregarCliente() {
+        if (filaSeleccionada(tbClienteDialog)) {
+            Mensaje("¡Seleccione un cliente!", "¡Faltan Datos!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            cliente = new Cliente(Long.valueOf(modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 0).toString()),
+                    modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 1).toString(),
+                    modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 2).toString(),
+                    modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 3).toString(),
+                    modeloCliente.getValueAt(tbClienteDialog.getSelectedRow(), 4).toString());
 
-        String nombreCompleto = clienteElegido.getNombre() + " " + clienteElegido.getApellido();
-
-        setearCliente(clienteElegido);
-        dlgClientes.dispose();
-        return clienteElegido;
+            setearCliente(cliente);
+            dlgClientes.dispose();
+        }
     }
 
     public void setearCliente(Cliente c) {
@@ -1608,8 +1627,8 @@ public class MenuVenta extends javax.swing.JFrame {
         txtTelefono.setText(cliente.getTelefono());
         txtLocalidad.setText(cliente.getLocalidad());
 
-        modeloCliente.addRow(new Object[]{cliente.getId(), cliente.getNombre(),
-            cliente.getApellido(), cliente.getTelefono(), cliente.getLocalidad()});
+//        modeloCliente.addRow(new Object[]{cliente.getId(), cliente.getNombre(),
+//            cliente.getApellido(), cliente.getTelefono(), cliente.getLocalidad()});
     }
 
     private void clienteDefault() {
@@ -1618,9 +1637,6 @@ public class MenuVenta extends javax.swing.JFrame {
     }
 
     public void ModificarCliente() {
-        if (modeloCliente != null) {
-            limpiarTabla(modeloCliente);
-        }
         dlgClientes.setLocationRelativeTo(null);
         dlgClientes.setVisible(true);
     }
@@ -1686,7 +1702,6 @@ public class MenuVenta extends javax.swing.JFrame {
         modeloFactura.addRow(new Object[]{producto.getCodigo(), cantidad, producto.getNombre(), producto.getPrecio(), total});
         sumarTotal(total);
         dlgListaProductos.dispose();
-        limpiarTabla(modeloProductos);
         spDlgListaProductosCantidad.setValue(1);
     }
 
@@ -1696,7 +1711,7 @@ public class MenuVenta extends javax.swing.JFrame {
     }
 
     private void eliminarProducto() {
-        if (filaSeleccionada()) {
+        if (filaSeleccionada(tbFactura)) {
             Mensaje("Elegir un producto para eliminar", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
         } else {
             float total = -Float.valueOf(modeloFactura.getValueAt(tbFactura.getSelectedRow(), 4).toString());
@@ -1707,7 +1722,7 @@ public class MenuVenta extends javax.swing.JFrame {
     //</editor-fold>     
 
     private void EditarCantidad() {
-        if (filaSeleccionada()) {
+        if (filaSeleccionada(tbFactura)) {
             Mensaje("Elegir un producto para modificar", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
         }
         filaModificada = tbFactura.getSelectedRowCount();
@@ -1727,6 +1742,8 @@ public class MenuVenta extends javax.swing.JFrame {
     private void emitirComprobante(float total, Cliente clienteElegido) {
         if (total == 0) {
             Mensaje("No hay nada para facturar", "¡Faltan datos!", JOptionPane.INFORMATION_MESSAGE);
+        } else if (clienteElegido == null) {
+            Mensaje("No hay cliente para facturar", "¡Faltan datos!", JOptionPane.INFORMATION_MESSAGE);
         } else {
 
             txtDlgCobrarCliente.setText(clienteElegido.getApellido() + ", " + clienteElegido.getNombre());
@@ -1748,26 +1765,33 @@ public class MenuVenta extends javax.swing.JFrame {
 
     private void Cobrar() {
         items = new ArrayList<>();
-        String condicionVenta;
+        String condicionVenta = null;
+        String medioPago ="";
 
         if (rbDialogCobrarCC.isSelected()) {
-            condicionVenta = "CUENTA CORRIENTE";
+            condicionVenta = "CUENTA CORRIENTE";            
             Mensaje(condicionVenta, condicionVenta, WIDTH);
-        } else {
+        } else if(rbDialogCobrarContado.isSelected()) {
             condicionVenta = "CONTADO";
+            medioPago = cbDlgModoPago.getSelectedItem().toString();            
             Mensaje(condicionVenta, condicionVenta, WIDTH);
         }
         Date fechaFactura = new Date(dcHora.getDate().getTime());
-        factura = new Factura(fechaFactura, cliente, condicionVenta, cbDlgModoPago.getSelectedItem().toString(), total);
+        factura = new Factura(fechaFactura, cliente, condicionVenta, medioPago, total);
         long idFactura = facturaController.crearFactura(factura);
-        for (int i = 0; i < tbFactura.getRowCount(); i++) {
-            items.add(new DetalleFactura(idFactura, Long.parseLong(tbFactura.getValueAt(i, 0).toString()),
-                    Integer.parseInt(tbFactura.getValueAt(i, 1).toString()),
-                    Float.parseFloat(tbFactura.getValueAt(i, 3).toString())));
-        }
-        detalleController.CrearDetalle(items);
-        CerrarDialogo(dlgCobrar);
-        clienteDefault();
+//        if (idFactura > 0) {
+            for (int i = 0; i < tbFactura.getRowCount(); i++) {
+                items.add(new DetalleFactura(idFactura, Long.parseLong(tbFactura.getValueAt(i, 0).toString()),
+                        Integer.parseInt(tbFactura.getValueAt(i, 1).toString()),
+                        Float.parseFloat(tbFactura.getValueAt(i, 3).toString())));
+            }
+            detalleController.CrearDetalle(items);
+            CerrarDialogo(dlgCobrar);
+            clienteDefault();
+//        }else{
+//            Mensaje("Algo paso", "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
+        
     }
 
     private void HabilitarModoPago(boolean b) {
@@ -1775,10 +1799,16 @@ public class MenuVenta extends javax.swing.JFrame {
     }
 
     private void Volver() {
-        dispose();
-        Menu menu = new Menu();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
+        this.dispose();
+//        Menu menu = new Menu();
+//        menu.setLocationRelativeTo(null);
+//        menu.setVisible(true);
+    }
+
+    private void TeclaEnter(KeyEvent evt) {
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            BuscarClienteNombre();
+        }
     }
 
 }

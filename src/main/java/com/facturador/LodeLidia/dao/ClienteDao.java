@@ -18,7 +18,7 @@ public class ClienteDao {
     public ClienteDao(Connection con) {
         this.con = con;
     }
-    
+
     public Cliente buscarCliente(String nombre) {
         final Connection con = new ConnectionFactory().recuperaConexion();
 
@@ -33,14 +33,15 @@ public class ClienteDao {
                 stm.execute();
 
                 ResultSet result = stm.executeQuery();
-
-                while (result.next()) {
-                    cliente = new Cliente(result.getLong("id"),
-                            result.getString("NOMBRE"), result.getString("APELLIDO"),
-                            result.getString("TELEFONO"), result.getString("LOCALIDAD"));
+                try (result) {
+                    while (result.next()) {
+                        cliente = new Cliente(result.getLong("id"),
+                                result.getString("NOMBRE"), result.getString("APELLIDO"),
+                                result.getString("TELEFONO"), result.getString("LOCALIDAD"));
+                    }
                 }
             }
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -66,7 +67,7 @@ public class ClienteDao {
                 try (result) {
                     while (result.next()) {
                         cliente.setId(Long.valueOf(result.getInt(1)));
-                    }                    
+                    }
                     return cliente.getId();
 
                 }
@@ -78,7 +79,7 @@ public class ClienteDao {
         }
 
     }
-    
+
     public List<Cliente> listarNombre(String nombre) {
         List<Cliente> resultado = new ArrayList<>();
         final Connection con = new ConnectionFactory().recuperaConexion();
@@ -111,8 +112,8 @@ public class ClienteDao {
             throw new RuntimeException(e);
         }
         return resultado;
-    }    
-    
+    }
+
     public List<Cliente> listarCuentas(String nombre) {
         List<Cliente> resultado = new ArrayList<>();
         final Connection con = new ConnectionFactory().recuperaConexion();
@@ -137,7 +138,7 @@ public class ClienteDao {
                     resultado.add(fila);
                 }
             }
-            
+
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
@@ -168,7 +169,7 @@ public class ClienteDao {
                     resultado.add(fila);
                 }
             }
-            
+
         } catch (SQLException e) {
 
             throw new RuntimeException(e);

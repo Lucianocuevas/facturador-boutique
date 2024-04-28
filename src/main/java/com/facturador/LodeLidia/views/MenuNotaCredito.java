@@ -102,19 +102,34 @@ public class MenuNotaCredito extends javax.swing.JFrame {
 
         dlgClientes.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dlgClientes.setTitle("Clientes");
-        dlgClientes.setMaximumSize(new java.awt.Dimension(792, 521));
         dlgClientes.setMinimumSize(new java.awt.Dimension(792, 521));
         dlgClientes.setModal(true);
         dlgClientes.setUndecorated(true);
-        dlgClientes.setPreferredSize(new java.awt.Dimension(855, 565));
         dlgClientes.setSize(new java.awt.Dimension(855, 565));
 
+        txtBuscarNombreDialog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarNombreDialogKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarNombreDialogKeyTyped(evt);
+            }
+        });
+
         txtBuscarCodigoDialog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarCodigoDialogKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBuscarCodigoDialogKeyTyped(evt);
             }
         });
 
+        tbClienteDialog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbClienteDialogKeyPressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(tbClienteDialog);
 
         lblNombreDialog.setText("Nombre");
@@ -145,6 +160,9 @@ public class MenuNotaCredito extends javax.swing.JFrame {
         lblTelefonoDialog.setText("Telefono");
 
         txtBuscarTelefonoDialog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarTelefonoDialogKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBuscarTelefonoDialogKeyTyped(evt);
             }
@@ -194,18 +212,15 @@ public class MenuNotaCredito extends javax.swing.JFrame {
                         .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(FondoLayout.createSequentialGroup()
                                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(FondoLayout.createSequentialGroup()
-                                        .addComponent(lblNombreDialog)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                                        .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtBuscarCodigoDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtBuscarNombreDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtBuscarTelefonoDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(lblCodigoDialog))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
-                                .addComponent(lblTelefonoDialog)
-                                .addGap(361, 361, 361)))
+                                    .addComponent(lblNombreDialog)
+                                    .addComponent(lblTelefonoDialog))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtBuscarNombreDialog, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(txtBuscarCodigoDialog)
+                                    .addComponent(txtBuscarTelefonoDialog)))
+                            .addComponent(lblCodigoDialog))
+                        .addGap(48, 48, 48)
                         .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnBuscarTelefonoDialog, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                             .addComponent(btnBuscarCodigoDialog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -262,7 +277,6 @@ public class MenuNotaCredito extends javax.swing.JFrame {
 
         dlgDescripcion.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dlgDescripcion.setTitle("Descripcion");
-        dlgDescripcion.setMaximumSize(new java.awt.Dimension(792, 521));
         dlgDescripcion.setMinimumSize(new java.awt.Dimension(792, 521));
         dlgDescripcion.setModal(true);
         dlgDescripcion.setUndecorated(true);
@@ -405,11 +419,11 @@ public class MenuNotaCredito extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nota de Credito");
-        setMaximumSize(new java.awt.Dimension(1030, 587));
-        setMinimumSize(new java.awt.Dimension(1030, 587));
+        setMaximumSize(new java.awt.Dimension(990, 597));
+        setMinimumSize(new java.awt.Dimension(990, 597));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1030, 587));
-        setSize(new java.awt.Dimension(1030, 587));
+        setPreferredSize(new java.awt.Dimension(990, 597));
+        setSize(new java.awt.Dimension(990, 597));
 
         Contenedor1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -488,7 +502,7 @@ public class MenuNotaCredito extends javax.swing.JFrame {
                 .addComponent(lblMinimizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSalir)
-                .addGap(14, 14, 14))
+                .addGap(18, 18, 18))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -628,7 +642,7 @@ public class MenuNotaCredito extends javax.swing.JFrame {
                     .addGroup(Encabezado1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(dcHora, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(3, Short.MAX_VALUE))))
+                        .addContainerGap(13, Short.MAX_VALUE))))
         );
         Encabezado1Layout.setVerticalGroup(
             Encabezado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -661,7 +675,7 @@ public class MenuNotaCredito extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        pnPrincipal1.add(Encabezado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 890, 100));
+        pnPrincipal1.add(Encabezado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 900, 100));
 
         ContenedorComprobante1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -732,7 +746,7 @@ public class MenuNotaCredito extends javax.swing.JFrame {
                     .addComponent(Datos1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ContenedorComprobante1Layout.createSequentialGroup()
                         .addGroup(ContenedorComprobante1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                             .addGroup(ContenedorComprobante1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(lblTotal1)
@@ -770,17 +784,17 @@ public class MenuNotaCredito extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnPrincipal1.add(ContenedorComprobante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 890, 410));
+        pnPrincipal1.add(ContenedorComprobante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 900, 410));
 
         javax.swing.GroupLayout panelFondo1Layout = new javax.swing.GroupLayout(panelFondo1);
         panelFondo1.setLayout(panelFondo1Layout);
         panelFondo1Layout.setHorizontalGroup(
             panelFondo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondo1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(pnPrincipal1, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelFondo1Layout.setVerticalGroup(
             panelFondo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -790,22 +804,24 @@ public class MenuNotaCredito extends javax.swing.JFrame {
                 .addComponent(pnPrincipal1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE))
         );
 
-        Contenedor1.add(panelFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, -1));
+        Contenedor1.add(panelFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGap(0, 991, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Contenedor1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(Contenedor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 1, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 597, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(Contenedor1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                    .addComponent(Contenedor1, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -867,11 +883,11 @@ public class MenuNotaCredito extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClienteMouseClicked
 
     private void btnBuscarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarClienteMouseEntered
-        // TODO add your handling code here:
+        btnBuscarCliente.setBackground(Color.red);
     }//GEN-LAST:event_btnBuscarClienteMouseEntered
 
     private void btnBuscarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarClienteMouseExited
-        // TODO add your handling code here:
+        btnBuscarCliente.setBackground(new Color(78, 80, 82));
     }//GEN-LAST:event_btnBuscarClienteMouseExited
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
@@ -952,8 +968,33 @@ public class MenuNotaCredito extends javax.swing.JFrame {
     private void btnDlgDescripcionCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgDescripcionCancelarActionPerformed
         CerrarDialogo(dlgDescripcion);
     }//GEN-LAST:event_btnDlgDescripcionCancelarActionPerformed
+
+    private void txtBuscarNombreDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarNombreDialogKeyTyped
+        
+    }//GEN-LAST:event_txtBuscarNombreDialogKeyTyped
+
+    private void txtBuscarNombreDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarNombreDialogKeyPressed
+        TeclaEnter(evt);
+    }//GEN-LAST:event_txtBuscarNombreDialogKeyPressed
+
+    private void txtBuscarCodigoDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCodigoDialogKeyPressed
+        TeclaEnter(evt);
+    }//GEN-LAST:event_txtBuscarCodigoDialogKeyPressed
+
+    private void txtBuscarTelefonoDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarTelefonoDialogKeyPressed
+        TeclaEnter(evt);
+    }//GEN-LAST:event_txtBuscarTelefonoDialogKeyPressed
+
+    private void tbClienteDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbClienteDialogKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbClienteDialogKeyPressed
     //</editor-fold>
 
+    private void TeclaEnter(KeyEvent evt) {
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BuscarClienteNombre();
+        }
+    }
     public static void main(String args[]) {
 
         FlatMacDarkLaf.setup();

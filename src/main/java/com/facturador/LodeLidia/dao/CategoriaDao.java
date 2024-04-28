@@ -1,4 +1,3 @@
-
 package com.facturador.LodeLidia.dao;
 
 import com.facturador.LodeLidia.factory.ConnectionFactory;
@@ -10,82 +9,81 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CategoriaDao {
-    
-    
+
     private Connection con;
-    
-    public CategoriaDao(Connection con){
+
+    public CategoriaDao(Connection con) {
         this.con = con;
     }
-    
-    public List<Categoria> listarCategoria(){
-        
-        List<Categoria> resultado = new ArrayList<>();        
-        final Connection con = new ConnectionFactory().recuperaConexion();        
-        try(con){            
+
+    public List<Categoria> listarCategoria() {
+
+        List<Categoria> resultado = new ArrayList<>();
+        final Connection con = new ConnectionFactory().recuperaConexion();
+        try (con) {
             PreparedStatement stm = con.prepareStatement("SELECT ID, CATEGORIA"
                     + " FROM CATEGORIAS");
-            try(stm){
-                stm.execute();                
-                ResultSet result = stm.executeQuery();                
-                while(result.next()){
-                    Categoria fila = new Categoria(result.getInt("ID"),
-                    result.getString("CATEGORIA"));                    
-                    resultado.add(fila);
+            try (stm) {
+                stm.execute();
+                ResultSet result = stm.executeQuery();
+                try (result) {
+                    while (result.next()) {
+                        Categoria fila = new Categoria(result.getInt("ID"),
+                                result.getString("CATEGORIA"));
+                        resultado.add(fila);
+                    }
                 }
-            }   
-            con.close();
-        }catch(SQLException e){
+            }
+            
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-        }        
+        }
         return resultado;
     }
-    
-    public List<Categoria> listarCategoria(Integer id){
-        
-        List<Categoria> resultado = new ArrayList<>();        
-        final Connection con = new ConnectionFactory().recuperaConexion();        
-        try(con){            
+
+    public List<Categoria> listarCategoria(Integer id) {
+
+        List<Categoria> resultado = new ArrayList<>();
+        final Connection con = new ConnectionFactory().recuperaConexion();
+        try (con) {
             PreparedStatement stm = con.prepareStatement("SELECT ID, CATEGORIA"
                     + " FROM CATEGORIAS WHERE ID = ?");
-            try(stm){                
+            try (stm) {
                 stm.setInt(1, id);
-                stm.execute();                
-                ResultSet result = stm.executeQuery();                
-                while(result.next()){
+                stm.execute();
+                ResultSet result = stm.executeQuery();
+                while (result.next()) {
                     Categoria fila = new Categoria(result.getInt("ID"),
-                    result.getString("CATEGORIA"));                    
+                            result.getString("CATEGORIA"));
                     resultado.add(fila);
                 }
-            }   
-            con.close();
-        }catch(SQLException e){
+            }
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-        }        
+        }
         return resultado;
     }
 
     public Categoria buscar(String nombre) {
-        
+
         final Connection con = new ConnectionFactory().recuperaConexion();
-            try(con){
-                PreparedStatement stm = con.prepareStatement("SELECT ID, CATEGORIA FROM CATEGORIAS WHERE CATEGORIA = ?");
-                try(stm){
-                    
-                    stm.setString(1, nombre);
-                    stm.execute();
-                    ResultSet rs = stm.executeQuery();
-                    rs.next();
-                    Categoria resultado = new Categoria(rs.getInt(1), nombre);
-                    con.close();
-                    return resultado;
-                }
+        try (con) {
+            PreparedStatement stm = con.prepareStatement("SELECT ID, CATEGORIA FROM CATEGORIAS WHERE CATEGORIA = ?");
+            try (stm) {
+
+                stm.setString(1, nombre);
+                stm.execute();
+                ResultSet rs = stm.executeQuery();
+                rs.next();
+                Categoria resultado = new Categoria(rs.getInt(1), nombre);
                 
-            }catch(SQLException e){
-                throw new RuntimeException(e);
+                return resultado;
             }
-        
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

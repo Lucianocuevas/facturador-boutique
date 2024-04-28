@@ -23,6 +23,10 @@ public class DetalleFactura {
         this.codigoProducto = codigoProducto;
         this.cantidad = cantidad;
     }
+
+    public DetalleFactura() {
+  
+    }
     
     public long getCodigoProducto() {
         return codigoProducto;

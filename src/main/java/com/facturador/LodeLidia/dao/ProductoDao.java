@@ -1,4 +1,3 @@
-
 package com.facturador.LodeLidia.dao;
 
 import com.facturador.LodeLidia.factory.ConnectionFactory;
@@ -50,7 +49,6 @@ public class ProductoDao {
                 resultado.add(fila);
                 }
             }
-            con.close();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -78,7 +76,6 @@ public class ProductoDao {
                     while(rs.next()){
                         producto.setCodigo(Long.valueOf(rs.getInt(1)));                        
                     }
-                    con.close();
                     return producto.getCodigo();
                 }
             }            
@@ -109,10 +106,6 @@ public class ProductoDao {
             
         }catch(SQLException e){
             throw new RuntimeException(e);
-        }
-                
-        
+        }    
     }
-
-    
 }
